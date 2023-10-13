@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .navbar-brand{
+            margin-left: 35%;
+            font-weight: bolder;
+            align-items: center;
+        }
+        .wrapper{
+            display: flex;
+            height:75vw;
+            background-image: linear-gradient(rgba(94, 34, 110, 0.73), rgba(53, 3, 53, 0.416), rgb(70, 10, 70));
+            background-position: top;
+        }
+        .register,.login{
+            padding: 2%;
+            width: 45%;
+            height: max-content;
+            margin-left: 3%;
+            border: 1px solid black;
+            border-radius: 2%;
+            box-shadow: 1vh 1vh 2vh rgb(72, 71, 71);
+
+        }
+
+        #fname,#lname,#name,#email,#password,#confirm_password,#user_name, #age, #balance{
+            background-color:transparent;
+            border-color: black;
+
+        }
+        label{
+            color: white;
+        }
+    </style>
+    <title>FinJournal Register and Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="top">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <h1 class="navbar-brand">Welcome to FinJournal!</h1>
+            </div>
+        </nav>
+    </div>
+    <div class="wrapper">
+        <div class="register">
+            <h1>Register</h1>
+            {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div id = "message" class="alert alert-warning alert-dismissible fade show" >
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                        <button type="button" class="close" id = "closebutton"data-dismiss="alert" >&times;</button>
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <script>// Select the HTML element by its id
+                    // Select the HTML element by its id
+                var myButton = document.getElementById("closebutton");
+                var myMessage = document.getElementById("message")
+                // Define the function to be executed when the button is clicked
+                function handleClick() {
+
+                    myMessage.remove();
+
+                }
+
+                // Assign the handleClick function to the onclick event of the button
+                myButton.onclick = handleClick;
+
+                </script>
+            <form action="/user/register" method="post">
+                <label for="fname" class="form-label">First Name</label>
+                <input type="text" id="fname" name = 'fname' class="form-control">
+
+                <label for="lname" class="form-label">Last Name</label>
+                <input type="text" id="lname" name = 'lname' class="form-control">
+
+                <label for="user_name" class="form-label">User Name</label>
+                <input type="text" id="user_name" name = 'user_name'class="form-control">
+
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name = 'email'class="form-control">
+
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password"  name = 'password'class="form-control" aria-describedby="passwordHelpBlock">
+
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input type="password" id="confirm_password" name = 'confirm_password'class="form-control">
+
+                <label for="balance" class="form-label">Opening Balance(if none put 0)</label>
+                <input type="number" id="balance" name = 'balance'class="form-control">
+
+
+
+                <button  class="btn btn-secondary">Register</button>
+            </form>
+        </div>
+        <div class="login">
+            <h1>Login</h1>
+            <form action="/user/login" method="post">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" name = 'email'>
+
+
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name = "password" class="form-control" aria-describedby="passwordHelpBlock">
+
+                <button class="btn btn-secondary" name = 'password'>Login</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
